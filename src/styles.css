@@ -165,16 +165,16 @@
     color: transparent;
   }
   .glow-card {
-    background: linear-gradient(135deg, oklch(0.20 0.08 340 / 0.6), oklch(0.15 0.05 340 / 0.4));
+    background: linear-gradient(135deg, oklch(0.20 0.08 15 / 0.6), oklch(0.13 0.05 340 / 0.45));
     backdrop-filter: blur(12px);
-    border: 1px solid oklch(0.65 0.27 340 / 0.25);
+    border: 1px solid oklch(0.64 0.26 15 / 0.30);
     box-shadow: var(--shadow-card);
     transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
   }
   .glow-card:hover {
     transform: translateY(-4px);
-    border-color: oklch(0.65 0.27 340 / 0.6);
-    box-shadow: 0 12px 40px oklch(0.65 0.27 340 / 0.35), 0 0 0 1px oklch(0.65 0.27 340 / 0.5);
+    border-color: oklch(0.74 0.28 10 / 0.7);
+    box-shadow: 0 12px 40px oklch(0.64 0.26 15 / 0.45), 0 0 0 1px oklch(0.62 0.28 340 / 0.45);
   }
   .btn-glow {
     background: var(--gradient-primary);
