@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import * as React from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   Github, Linkedin, Mail, FileText, Send,
   Brain, Cpu, MessageSquare, Database, BarChart3, Sparkles,
