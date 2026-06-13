@@ -4,6 +4,7 @@ import {
   Github, Linkedin, Mail, FileText, Send,
   Brain, Cpu, MessageSquare, Database, BarChart3, Sparkles,
   GraduationCap, Briefcase, Code2, Bot, Image as ImageIcon, FileType,
+  ExternalLink, ChevronLeft, ChevronRight, MapPin, Award, Star,
 } from "lucide-react";
 import profileImg from "@/assets/profile.jpg";
 
@@ -71,15 +72,17 @@ const EXPERIENCE = [
 ];
 
 const PROJECTS = [
-  { icon: Bot, title: "AI Agent", desc: "Autonomous task-completion agent with tool-use & planning over LLM backbone.", tags: ["LangChain", "OpenAI", "RAG"] },
-  { icon: FileType, title: "Text Summarizer", desc: "Abstractive summarizer fine-tuned on news + research corpora.", tags: ["Transformers", "PyTorch"] },
-  { icon: ImageIcon, title: "Image Classifier", desc: "Vision model with augmentation pipeline reaching 97% top-1 accuracy.", tags: ["CNN", "TensorFlow"] },
-  { icon: Code2, title: "Code Assistant", desc: "IDE-integrated code-completion assistant with semantic context retrieval.", tags: ["LLM", "Embeddings"] },
+  { icon: Bot, title: "AI Agent", desc: "Autonomous task-completion agent with tool-use & planning over LLM backbone.", tags: ["LangChain", "OpenAI", "RAG"], live: "https://example.com", github: "https://github.com/archeesinha" },
+  { icon: FileType, title: "Text Summarizer", desc: "Abstractive summarizer fine-tuned on news + research corpora.", tags: ["Transformers", "PyTorch"], github: "https://github.com/archeesinha" },
+  { icon: ImageIcon, title: "Image Classifier", desc: "Vision model with augmentation pipeline reaching 97% top-1 accuracy.", tags: ["CNN", "TensorFlow"], live: "https://example.com", github: "https://github.com/archeesinha" },
+  { icon: Code2, title: "Code Assistant", desc: "IDE-integrated code-completion assistant with semantic context retrieval.", tags: ["LLM", "Embeddings"], github: "https://github.com/archeesinha" },
+  { icon: Sparkles, title: "GenAI Studio", desc: "Multimodal generation playground combining diffusion + LLM pipelines.", tags: ["Diffusion", "Multimodal"], live: "https://example.com", github: "https://github.com/archeesinha" },
+  { icon: Database, title: "Realtime Analytics", desc: "Streaming analytics dashboard with ML-driven anomaly detection.", tags: ["Kafka", "MLOps"], live: "https://example.com" },
 ];
 
 const EDUCATION = [
-  { degree: "Ph.D. in Computer Science", school: "Stanford University", major: "Major: Machine Learning" },
-  { degree: "M.Tech in Artificial Intelligence", school: "IIT Bombay", major: "Major: AI Engineering" },
+  { degree: "Ph.D. in Computer Science", school: "Stanford University", major: "Machine Learning", year: "2023 — Present", gpa: "4.0 / 4.0", location: "California, USA" },
+  { degree: "M.Tech in Artificial Intelligence", school: "IIT Bombay", major: "AI Engineering", year: "2019 — 2021", gpa: "9.6 / 10", location: "Mumbai, India" },
 ];
 
 function Index() {
@@ -93,6 +96,7 @@ function Index() {
     <div className="min-h-screen text-foreground">
       <Nav />
       <Hero roleIdx={roleIdx} />
+      <PortfolioBanner />
       <Skills />
       <Experience />
       <Projects />
