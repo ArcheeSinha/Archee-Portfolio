@@ -350,61 +350,58 @@ function Skills() {
 }
 
 function Experience() {
+  const trackRef = useRef<HTMLDivElement | null>(null);
   const [progress, setProgress] = useState(0);
   useEffect(() => {
     const onScroll = () => {
-      const el = document.getElementById("experience");
+      const el = trackRef.current;
       if (!el) return;
       const r = el.getBoundingClientRect();
       const vh = window.innerHeight;
-      const total = el.offsetHeight + vh;
-      const seen = Math.min(Math.max(vh - r.top, 0), total);
-      setProgress(Math.min(1, seen / total));
+      // dot follows the viewport center as the track passes through
+      const center = vh / 2;
+      const p = (center - r.top) / r.height;
+      setProgress(Math.min(1, Math.max(0, p)));
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   return (
-    <section id="experience" className="py-24 px-6 relative">
-      <div className="max-w-4xl mx-auto">
+    <section id="experience" className="py-24 px-6 relative overflow-hidden">
+      <div className="max-w-5xl mx-auto">
         <SectionTitle>Work Experience</SectionTitle>
         <p className="text-center text-muted-foreground mb-16">A timeline of building intelligent systems.</p>
 
-        <div className="relative pl-12 sm:pl-20">
-          {/* track */}
-          <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-px bg-border" />
+        <div ref={trackRef} className="relative">
+          {/* centered track */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-border" />
           {/* progress fill */}
-          <div className="absolute left-4 sm:left-8 top-0 w-px"
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[3px] rounded-full"
             style={{
               height: `${progress * 100}%`,
               background: "var(--gradient-primary)",
-              boxShadow: "0 0 12px oklch(0.65 0.27 340 / .8)",
+              boxShadow: "0 0 16px oklch(0.75 0.30 340 / .9)",
             }} />
-          {/* moving dot */}
-          <div className="absolute left-4 sm:left-8 -translate-x-1/2 w-4 h-4 rounded-full transition-all"
+          {/* synced moving dot */}
+          <div className="absolute left-1/2 w-5 h-5 rounded-full"
             style={{
-              top: `calc(${progress * 100}% - 8px)`,
+              top: `${progress * 100}%`,
+              transform: "translate(-50%, -50%)",
               background: "var(--gradient-primary)",
-              boxShadow: "0 0 20px oklch(0.75 0.30 340 / .9)",
-            }} />
+              boxShadow: "0 0 24px 4px oklch(0.85 0.30 340 / .8)",
+            }}>
+            <span className="absolute inset-0 rounded-full animate-pulse-glow" />
+          </div>
 
-          <div className="space-y-14">
-            {EXPERIENCE.map((e) => (
-              <div key={e.role} className="relative">
-                <div className="absolute -left-12 sm:-left-16 top-2 w-4 h-4 rounded-full border-2 border-primary bg-background" />
-                <div className="glow-card rounded-2xl p-6">
-                  <div className="flex items-center gap-2 text-xs text-primary mb-2">
-                    <Briefcase size={14} /> {e.period}
-                  </div>
-                  <h3 className="text-xl font-semibold">{e.role}</h3>
-                  <p className="text-primary-glow mb-3" style={{ color: "oklch(0.78 0.20 340)" }}>{e.company}</p>
-                  <ul className="space-y-1 text-sm text-muted-foreground list-disc list-inside">
-                    {e.points.map((p) => <li key={p}>{p}</li>)}
-                  </ul>
-                </div>
-              </div>
+          <div className="space-y-20">
+            {EXPERIENCE.map((e, i) => (
+              <ExperienceItem key={e.role} item={e} side={i % 2 === 0 ? "left" : "right"} />
             ))}
           </div>
         </div>
@@ -413,34 +410,96 @@ function Experience() {
   );
 }
 
-function Projects() {
+function ExperienceItem({ item, side }: { item: typeof EXPERIENCE[number]; side: "left" | "right" }) {
+  const ref = useReveal<HTMLDivElement>();
+  const isLeft = side === "left";
   return (
-    <section id="projects" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="relative grid md:grid-cols-2 gap-6 md:gap-12 items-center">
+      {/* node marker on the line */}
+      <div className="hidden md:block absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-primary bg-background z-10" />
+      <div className={`${isLeft ? "md:pr-10 md:text-right" : "md:col-start-2 md:pl-10"}`}>
+        <div ref={ref} className={`glow-card rounded-2xl p-6 ${isLeft ? "reveal-l" : "reveal-r"}`}>
+          <div className={`flex items-center gap-2 text-xs text-primary mb-2 ${isLeft ? "md:justify-end" : ""}`}>
+            <Briefcase size={14} /> {item.period}
+          </div>
+          <h3 className="text-xl font-semibold">{item.role}</h3>
+          <p className="mb-3" style={{ color: "oklch(0.78 0.20 340)" }}>{item.company}</p>
+          <ul className={`space-y-1 text-sm text-muted-foreground ${isLeft ? "md:text-right" : ""}`}>
+            {item.points.map((p) => <li key={p}>• {p}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Projects() {
+  const railRef = useRef<HTMLDivElement | null>(null);
+  const scroll = (dir: 1 | -1) => {
+    const el = railRef.current;
+    if (!el) return;
+    const amount = Math.min(el.clientWidth * 0.7, 420);
+    el.scrollBy({ left: dir * amount, behavior: "smooth" });
+  };
+  return (
+    <section id="projects" className="py-24 px-6 relative">
+      <div className="max-w-7xl mx-auto">
         <SectionTitle>Featured Projects</SectionTitle>
-        <p className="text-center text-muted-foreground mb-12">Selected work — more on GitHub.</p>
-        <div className="grid sm:grid-cols-2 gap-6">
-          {PROJECTS.map((p, i) => (
-            <div key={p.title}
-              className="glow-card rounded-2xl p-6 group animate-fade-up"
-              style={{ animationDelay: `${i * 0.1}s` }}>
-              <div className="flex items-start gap-4">
-                <div className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0 transition-transform group-hover:rotate-6 group-hover:scale-110"
-                  style={{ background: "var(--gradient-primary)" }}>
-                  <p.icon className="text-primary-foreground" size={26} />
+        <p className="text-center text-muted-foreground mb-10">Scroll horizontally — hover any card to bring it forward.</p>
+
+        <div className="relative">
+          <button onClick={() => scroll(-1)} aria-label="Scroll left"
+            className="hidden sm:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full items-center justify-center glow-card hover:text-primary">
+            <ChevronLeft />
+          </button>
+          <button onClick={() => scroll(1)} aria-label="Scroll right"
+            className="hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full items-center justify-center glow-card hover:text-primary">
+            <ChevronRight />
+          </button>
+
+          {/* edge fades */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-[5]"
+               style={{ background: "linear-gradient(to right, var(--background), transparent)" }} />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-[5]"
+               style={{ background: "linear-gradient(to left, var(--background), transparent)" }} />
+
+          <div ref={railRef}
+               className="project-rail flex gap-6 overflow-x-auto py-10 px-12 sm:px-16">
+            {PROJECTS.map((p) => (
+              <article key={p.title}
+                className="project-card glow-card rounded-3xl shrink-0 w-[280px] sm:w-[320px] h-[400px] p-6 flex flex-col relative overflow-hidden">
+                <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full opacity-20 blur-2xl"
+                     style={{ background: "var(--gradient-primary)" }} />
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 relative z-10"
+                     style={{ background: "var(--gradient-primary)" }}>
+                  <p.icon className="text-primary-foreground" size={28} />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold mb-1">{p.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">{p.desc}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {p.tags.map((t) => (
-                      <span key={t} className="text-xs px-2 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">{t}</span>
-                    ))}
-                  </div>
+                <h3 className="text-xl font-semibold mb-2 relative z-10">{p.title}</h3>
+                <p className="text-sm text-muted-foreground mb-4 relative z-10 flex-1">{p.desc}</p>
+                <div className="flex flex-wrap gap-2 mb-4 relative z-10">
+                  {p.tags.map((t) => (
+                    <span key={t} className="text-[11px] px-2 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">{t}</span>
+                  ))}
                 </div>
-              </div>
-            </div>
-          ))}
+                <div className="flex items-center gap-3 relative z-10">
+                  {p.live && (
+                    <a href={p.live} target="_blank" rel="noreferrer"
+                       aria-label={`${p.title} live`}
+                       className="w-10 h-10 rounded-full flex items-center justify-center border border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground transition">
+                      <ExternalLink size={16} />
+                    </a>
+                  )}
+                  {p.github && (
+                    <a href={p.github} target="_blank" rel="noreferrer"
+                       aria-label={`${p.title} GitHub`}
+                       className="w-10 h-10 rounded-full flex items-center justify-center border border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground transition">
+                      <Github size={16} />
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -450,24 +509,72 @@ function Projects() {
 function Education() {
   return (
     <section id="education" className="py-24 px-6">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <SectionTitle>Education</SectionTitle>
-        <p className="text-center text-muted-foreground mb-12">Where the foundations were built.</p>
-        <div className="grid sm:grid-cols-2 gap-6">
+        <p className="text-center text-muted-foreground mb-14">Where the foundations were built.</p>
+        <div className="grid md:grid-cols-2 gap-8">
           {EDUCATION.map((ed, i) => (
-            <div key={ed.degree} className="glow-card rounded-2xl p-8 text-center animate-fade-up" style={{ animationDelay: `${i * 0.1}s` }}>
-              <div className="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center mb-4"
-                style={{ background: "var(--gradient-primary)" }}>
-                <GraduationCap className="text-primary-foreground" size={30} />
-              </div>
-              <h3 className="text-lg font-semibold">{ed.degree}</h3>
-              <p className="text-primary mt-1">{ed.school}</p>
-              <p className="text-sm text-muted-foreground mt-2">{ed.major}</p>
-            </div>
+            <EduCard key={ed.degree} ed={ed} i={i} />
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function EduCard({ ed, i }: { ed: typeof EDUCATION[number]; i: number }) {
+  const ref = useReveal<HTMLDivElement>();
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty("--mx", `${((e.clientX - r.left) / r.width) * 100}%`);
+    e.currentTarget.style.setProperty("--my", `${((e.clientY - r.top) / r.height) * 100}%`);
+  };
+  return (
+    <div
+      ref={ref}
+      onMouseMove={onMove}
+      className="edu-card glow-card rounded-3xl p-8 reveal"
+      style={{ transitionDelay: `${i * 80}ms` }}
+    >
+      <div className="flex items-start gap-5">
+        <div className="relative">
+          <div className="w-16 h-16 rounded-2xl flex items-center justify-center"
+               style={{ background: "var(--gradient-primary)" }}>
+            <GraduationCap className="text-primary-foreground" size={30} />
+          </div>
+          <div className="absolute -inset-2 rounded-2xl border border-primary/30 animate-pulse-glow" />
+        </div>
+        <div className="flex-1">
+          <div className="flex items-center gap-2 text-xs text-primary mb-1">
+            <Award size={14} /> {ed.year}
+          </div>
+          <h3 className="text-xl font-semibold leading-tight">{ed.degree}</h3>
+          <p className="text-gradient font-medium mt-1">{ed.school}</p>
+        </div>
+      </div>
+
+      <div className="mt-6 grid grid-cols-2 gap-4">
+        <div className="rounded-xl p-3 bg-primary/5 border border-primary/20">
+          <p className="text-[11px] uppercase tracking-wider text-muted-foreground">Major</p>
+          <p className="text-sm font-medium mt-1">{ed.major}</p>
+        </div>
+        <div className="rounded-xl p-3 bg-primary/5 border border-primary/20">
+          <p className="text-[11px] uppercase tracking-wider text-muted-foreground">GPA</p>
+          <p className="text-sm font-medium mt-1">{ed.gpa}</p>
+        </div>
+      </div>
+
+      <div className="mt-5 flex items-center justify-between text-sm">
+        <span className="flex items-center gap-2 text-muted-foreground">
+          <MapPin size={14} className="text-primary" /> {ed.location}
+        </span>
+        <span className="flex items-center gap-1 text-primary">
+          {Array.from({ length: 5 }).map((_, k) => (
+            <Star key={k} size={12} fill="currentColor" />
+          ))}
+        </span>
+      </div>
+    </div>
   );
 }
 
