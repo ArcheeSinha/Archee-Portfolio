@@ -125,17 +125,18 @@ function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   return (
-    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 px-2 py-2 rounded-full glow-card">
-      <ul className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
-        {NAV.map((n) => (
-          <li key={n.id}>
-            <a
-              href={`#${n.id}`}
-              className={`px-3 sm:px-4 py-2 rounded-full transition-colors ${
-                active === n.id ? "bg-primary/20 text-primary" : "text-muted-foreground hover:text-foreground"
-              }`}
-            >{n.label}</a>
-          </li>
+    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 nav-shell rounded-2xl px-3 py-2">
+      <ul className="flex items-center gap-2 sm:gap-3 text-[11px] sm:text-sm">
+        {NAV.map((n, i) => (
+          <React.Fragment key={n.id}>
+            {i > 0 && <li aria-hidden className="nav-sep hidden sm:block" />}
+            <li>
+              <a
+                href={`#${n.id}`}
+                className={`nav-tab inline-flex items-center rounded-md ${active === n.id ? "is-active" : ""}`}
+              ><span>{n.label}</span></a>
+            </li>
+          </React.Fragment>
         ))}
       </ul>
     </nav>
@@ -327,20 +328,16 @@ function Skills() {
       <div ref={ref} className="max-w-6xl mx-auto reveal">
         <SectionTitle>Skills & Expertise</SectionTitle>
         <p className="text-center text-muted-foreground mb-12">A toolkit forged across research and shipping.</p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
           {SKILLS.map((s, i) => (
-            <div key={s.title}
-                 className="skill-card-3d glow-card rounded-2xl p-6 animate-fade-up overflow-hidden"
-                 style={{ animationDelay: `${i * 0.08}s` }}>
-              <div className="skill-icon w-14 h-14 rounded-xl flex items-center justify-center mb-4 relative"
-                style={{ background: "var(--gradient-primary)" }}>
-                <s.icon className="text-primary-foreground" size={26} />
-                <span className="absolute inset-0 rounded-xl animate-pulse-glow pointer-events-none" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{s.title}</h3>
-              <p className="text-muted-foreground text-sm">{s.desc}</p>
-              <div className="mt-4 h-1 w-0 group-hover:w-full rounded-full transition-all duration-500"
-                   style={{ background: "var(--gradient-primary)", width: `${60 + ((i*17)%40)}%`, opacity: .7 }} />
+            <div
+              key={s.title}
+              className="skill-pill animate-fade-up"
+              style={{ animationDelay: `${i * 0.08}s` }}
+              title={s.desc}
+            >
+              <span className="pill-ico"><s.icon size={16} className="text-primary-foreground" /></span>
+              <span className="pill-label">{s.title}</span>
             </div>
           ))}
         </div>
@@ -444,7 +441,7 @@ function Projects() {
   return (
     <section id="projects" className="py-24 px-6 relative">
       <div className="max-w-7xl mx-auto">
-        <SectionTitle>Featured Projects</SectionTitle>
+        <SectionTitle>My Projects</SectionTitle>
         <p className="text-center text-muted-foreground mb-10">Scroll horizontally — hover any card to bring it forward.</p>
 
         <div className="relative">

@@ -63,30 +63,35 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(0.12 0.04 350);
-  --foreground: oklch(0.97 0.01 340);
-  --card: oklch(0.17 0.06 340);
-  --card-foreground: oklch(0.97 0.01 340);
-  --popover: oklch(0.17 0.06 340);
-  --popover-foreground: oklch(0.97 0.01 340);
-  --primary: oklch(0.65 0.27 340);
-  --primary-foreground: oklch(0.1 0.02 340);
-  --primary-glow: oklch(0.75 0.30 340);
-  --secondary: oklch(0.22 0.08 340);
-  --secondary-foreground: oklch(0.97 0.01 340);
-  --muted: oklch(0.20 0.05 340);
-  --muted-foreground: oklch(0.72 0.05 340);
-  --accent: oklch(0.65 0.27 340);
+  --background: oklch(0.10 0.04 20);
+  --foreground: oklch(0.97 0.01 20);
+  --card: oklch(0.16 0.07 20);
+  --card-foreground: oklch(0.97 0.01 20);
+  --popover: oklch(0.16 0.07 20);
+  --popover-foreground: oklch(0.97 0.01 20);
+  --primary: oklch(0.64 0.26 15);
+  --primary-foreground: oklch(0.1 0.02 15);
+  --primary-glow: oklch(0.74 0.28 10);
+  --magenta: oklch(0.62 0.28 340);
+  --magenta-glow: oklch(0.74 0.30 335);
+  --blue: oklch(0.68 0.22 245);
+  --blue-glow: oklch(0.78 0.18 240);
+  --secondary: oklch(0.22 0.08 15);
+  --secondary-foreground: oklch(0.97 0.01 20);
+  --muted: oklch(0.20 0.05 15);
+  --muted-foreground: oklch(0.74 0.05 20);
+  --accent: oklch(0.62 0.28 340);
   --accent-foreground: oklch(0.1 0.02 340);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.35 0.12 340 / 40%);
-  --input: oklch(0.25 0.08 340);
-  --ring: oklch(0.65 0.27 340);
-  --gradient-primary: linear-gradient(135deg, oklch(0.55 0.25 340), oklch(0.75 0.30 340));
-  --gradient-bg: radial-gradient(ellipse at top, oklch(0.22 0.12 340) 0%, oklch(0.08 0.03 340) 60%);
-  --shadow-glow: 0 0 40px oklch(0.65 0.27 340 / 0.5);
-  --shadow-card: 0 8px 32px oklch(0.05 0.02 340 / 0.6), 0 0 0 1px oklch(0.65 0.27 340 / 0.2);
+  --border: oklch(0.45 0.18 10 / 45%);
+  --input: oklch(0.22 0.08 15);
+  --ring: oklch(0.64 0.26 15);
+  --gradient-primary: linear-gradient(135deg, oklch(0.55 0.25 12), oklch(0.68 0.28 340));
+  --gradient-tri: linear-gradient(120deg, oklch(0.60 0.27 18) 0%, oklch(0.62 0.28 340) 55%, oklch(0.62 0.22 250) 100%);
+  --gradient-bg: radial-gradient(ellipse at top, oklch(0.20 0.13 18) 0%, oklch(0.10 0.05 340) 45%, oklch(0.06 0.03 250) 100%);
+  --shadow-glow: 0 0 40px oklch(0.64 0.26 15 / 0.55);
+  --shadow-card: 0 8px 32px oklch(0.05 0.02 15 / 0.7), 0 0 0 1px oklch(0.64 0.26 15 / 0.22);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -160,16 +165,16 @@
     color: transparent;
   }
   .glow-card {
-    background: linear-gradient(135deg, oklch(0.20 0.08 340 / 0.6), oklch(0.15 0.05 340 / 0.4));
+    background: linear-gradient(135deg, oklch(0.20 0.08 15 / 0.6), oklch(0.13 0.05 340 / 0.45));
     backdrop-filter: blur(12px);
-    border: 1px solid oklch(0.65 0.27 340 / 0.25);
+    border: 1px solid oklch(0.64 0.26 15 / 0.30);
     box-shadow: var(--shadow-card);
     transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
   }
   .glow-card:hover {
     transform: translateY(-4px);
-    border-color: oklch(0.65 0.27 340 / 0.6);
-    box-shadow: 0 12px 40px oklch(0.65 0.27 340 / 0.35), 0 0 0 1px oklch(0.65 0.27 340 / 0.5);
+    border-color: oklch(0.74 0.28 10 / 0.7);
+    box-shadow: 0 12px 40px oklch(0.64 0.26 15 / 0.45), 0 0 0 1px oklch(0.62 0.28 340 / 0.45);
   }
   .btn-glow {
     background: var(--gradient-primary);
@@ -308,3 +313,72 @@
   pointer-events: none;
 }
 .edu-card:hover::after { opacity: 1; }
+
+/* ---------- Slanted tab navbar ---------- */
+.nav-shell {
+  background: linear-gradient(135deg, oklch(0.10 0.04 15 / .85), oklch(0.08 0.03 340 / .85));
+  border: 1px solid oklch(0.62 0.28 340 / .45);
+  box-shadow: 0 0 24px oklch(0.62 0.28 340 / .35), 0 0 0 1px oklch(0.64 0.26 15 / .25) inset;
+  backdrop-filter: blur(14px);
+}
+.nav-tab {
+  position: relative;
+  transform: skewX(-18deg);
+  padding: .55rem 1.15rem;
+  border: 1px solid oklch(0.62 0.28 340 / .55);
+  background: linear-gradient(135deg, oklch(0.14 0.06 15 / .9), oklch(0.10 0.05 340 / .9));
+  transition: background .3s ease, box-shadow .3s ease, color .3s ease, transform .3s ease;
+  color: oklch(0.92 0.02 20);
+}
+.nav-tab > span { display: inline-block; transform: skewX(18deg); font-weight: 600; letter-spacing: .02em; }
+.nav-tab:hover {
+  background: linear-gradient(135deg, oklch(0.30 0.20 15 / .9), oklch(0.28 0.22 340 / .9));
+  box-shadow: 0 0 18px oklch(0.74 0.28 10 / .6);
+  transform: skewX(-18deg) translateY(-2px);
+}
+.nav-tab.is-active {
+  background: linear-gradient(135deg, oklch(0.55 0.26 15), oklch(0.55 0.28 340));
+  color: oklch(0.99 0.01 20);
+  box-shadow: 0 0 22px oklch(0.74 0.28 10 / .8), 0 0 0 1px oklch(0.74 0.28 340 / .8);
+}
+.nav-sep {
+  width: 2px; height: 22px;
+  background: linear-gradient(to bottom, transparent, oklch(0.74 0.28 340 / .9), transparent);
+  transform: skewX(-18deg);
+}
+
+/* ---------- Compact, animated skill pills ---------- */
+.skill-pill {
+  position: relative;
+  display: flex; align-items: center; gap: .65rem;
+  padding: .65rem .9rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, oklch(0.16 0.07 15 / .85), oklch(0.13 0.06 340 / .85));
+  border: 1px solid oklch(0.62 0.28 340 / .35);
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease;
+  overflow: hidden;
+}
+.skill-pill::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 30%, oklch(0.85 0.30 340 / .25) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform .7s ease;
+}
+.skill-pill:hover { transform: translateY(-3px) scale(1.04); border-color: oklch(0.74 0.28 10 / .8); box-shadow: 0 10px 28px oklch(0.64 0.26 15 / .45); }
+.skill-pill:hover::before { transform: translateX(120%); }
+.skill-pill .pill-ico {
+  width: 30px; height: 30px; border-radius: 8px;
+  display: grid; place-items: center;
+  background: var(--gradient-tri);
+  box-shadow: 0 0 14px oklch(0.74 0.28 10 / .55);
+  animation: pill-bob 3.2s ease-in-out infinite;
+}
+.skill-pill:hover .pill-ico { animation: pill-spin 1.2s linear infinite; }
+.skill-pill .pill-label { font-size: .85rem; font-weight: 600; letter-spacing: .01em; }
+
+@keyframes pill-bob {
+  0%,100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-3px) rotate(-4deg); }
+}
+@keyframes pill-spin { to { transform: rotate(360deg); } }
