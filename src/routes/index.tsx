@@ -242,21 +242,104 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   );
 }
 
+function useReveal<T extends HTMLElement = HTMLDivElement>() {
+  const ref = React.useRef<T | null>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) el.classList.add("in"); }),
+      { threshold: 0.18 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return ref;
+}
+
+function PortfolioBanner() {
+  return (
+    <section className="relative py-16 px-6 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none opacity-40">
+        {/* circuit lines */}
+        <svg className="absolute left-0 top-1/2 -translate-y-1/2 h-40 w-1/3" viewBox="0 0 400 200" fill="none">
+          <g stroke="oklch(0.75 0.30 340)" strokeWidth="1.5" strokeDasharray="6 6"
+             style={{ animation: "circuit-flow 2.5s linear infinite" }}>
+            <path d="M0 40 H120 V100 H220" />
+            <path d="M0 120 H80 V160 H260" />
+            <path d="M0 80 H40 V20 H180" />
+          </g>
+          <g fill="oklch(0.85 0.30 340)">
+            <circle cx="120" cy="40" r="3" /><circle cx="220" cy="100" r="3" />
+            <circle cx="80" cy="120" r="3" /><circle cx="40" cy="80" r="3" />
+          </g>
+        </svg>
+        <svg className="absolute right-0 top-1/2 -translate-y-1/2 h-40 w-1/3 scale-x-[-1]" viewBox="0 0 400 200" fill="none">
+          <g stroke="oklch(0.75 0.30 340)" strokeWidth="1.5" strokeDasharray="6 6"
+             style={{ animation: "circuit-flow 2.5s linear infinite" }}>
+            <path d="M0 40 H120 V100 H220" />
+            <path d="M0 120 H80 V160 H260" />
+            <path d="M0 80 H40 V20 H180" />
+          </g>
+          <g fill="oklch(0.85 0.30 340)">
+            <circle cx="120" cy="40" r="3" /><circle cx="220" cy="100" r="3" />
+            <circle cx="80" cy="120" r="3" /><circle cx="40" cy="80" r="3" />
+          </g>
+        </svg>
+      </div>
+
+      {/* sparkles */}
+      {Array.from({ length: 14 }).map((_, i) => (
+        <Sparkles
+          key={i}
+          className="absolute text-primary-glow pointer-events-none"
+          style={{
+            top: `${10 + (i * 37) % 80}%`,
+            left: `${5 + (i * 53) % 90}%`,
+            width: 10 + (i % 4) * 4,
+            height: 10 + (i % 4) * 4,
+            color: "oklch(0.85 0.30 340)",
+            animation: `sparkle-pop ${2 + (i % 3)}s ease-in-out infinite`,
+            animationDelay: `${(i % 5) * 0.4}s`,
+          }}
+        />
+      ))}
+
+      <div className="relative z-10 max-w-5xl mx-auto text-center">
+        <h2 className="banner-title font-black tracking-tight leading-none"
+            style={{ fontSize: "clamp(3rem, 10vw, 7rem)", letterSpacing: "0.04em" }}>
+          PORTFOLIO
+        </h2>
+        <div className="script-name -mt-6 sm:-mt-10"
+             style={{ fontSize: "clamp(2rem, 6vw, 4rem)" }}>
+          Archee Sinha
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Skills() {
+  const ref = useReveal<HTMLDivElement>();
   return (
     <section id="skills" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
+      <div ref={ref} className="max-w-6xl mx-auto reveal">
         <SectionTitle>Skills & Expertise</SectionTitle>
         <p className="text-center text-muted-foreground mb-12">A toolkit forged across research and shipping.</p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {SKILLS.map((s, i) => (
-            <div key={s.title} className="glow-card rounded-2xl p-6 animate-fade-up" style={{ animationDelay: `${i * 0.08}s` }}>
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+            <div key={s.title}
+                 className="skill-card-3d glow-card rounded-2xl p-6 animate-fade-up overflow-hidden"
+                 style={{ animationDelay: `${i * 0.08}s` }}>
+              <div className="skill-icon w-14 h-14 rounded-xl flex items-center justify-center mb-4 relative"
                 style={{ background: "var(--gradient-primary)" }}>
-                <s.icon className="text-primary-foreground" size={24} />
+                <s.icon className="text-primary-foreground" size={26} />
+                <span className="absolute inset-0 rounded-xl animate-pulse-glow pointer-events-none" />
               </div>
               <h3 className="text-xl font-semibold mb-2">{s.title}</h3>
               <p className="text-muted-foreground text-sm">{s.desc}</p>
+              <div className="mt-4 h-1 w-0 group-hover:w-full rounded-full transition-all duration-500"
+                   style={{ background: "var(--gradient-primary)", width: `${60 + ((i*17)%40)}%`, opacity: .7 }} />
             </div>
           ))}
         </div>
