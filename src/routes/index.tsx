@@ -125,17 +125,18 @@ function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   return (
-    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 px-2 py-2 rounded-full glow-card">
-      <ul className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
-        {NAV.map((n) => (
-          <li key={n.id}>
-            <a
-              href={`#${n.id}`}
-              className={`px-3 sm:px-4 py-2 rounded-full transition-colors ${
-                active === n.id ? "bg-primary/20 text-primary" : "text-muted-foreground hover:text-foreground"
-              }`}
-            >{n.label}</a>
-          </li>
+    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 nav-shell rounded-2xl px-3 py-2">
+      <ul className="flex items-center gap-2 sm:gap-3 text-[11px] sm:text-sm">
+        {NAV.map((n, i) => (
+          <React.Fragment key={n.id}>
+            {i > 0 && <li aria-hidden className="nav-sep hidden sm:block" />}
+            <li>
+              <a
+                href={`#${n.id}`}
+                className={`nav-tab inline-flex items-center rounded-md ${active === n.id ? "is-active" : ""}`}
+              ><span>{n.label}</span></a>
+            </li>
+          </React.Fragment>
         ))}
       </ul>
     </nav>
