@@ -2,12 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import * as React from "react";
 import { useEffect, useState, useRef } from "react";
 import {
-  Github, Linkedin, Mail, FileText, Send, Sun, Moon,
-  Brain, Cpu, MessageSquare, Database, BarChart3, Sparkles,
+  Github, Linkedin, Mail, FileText, Send,
+  Brain, MessageSquare, Database, BarChart3, Sparkles,
   Briefcase, Code2, Bot, Image as ImageIcon, FileType,
   ExternalLink, ChevronLeft, ChevronRight, Rocket, Target,
   Terminal, MessageCircle, Network, Activity, Calendar,
-  Phone, MapPin, Clock, Users, Star, Zap, Twitter, Instagram,
+  Phone, MapPin, Clock, Users, Zap, Award, ShieldCheck,
+  Heart, Dumbbell,
 } from "lucide-react";
 import profileImg from "@/assets/profile.jpg";
 
@@ -30,16 +31,17 @@ const NAV = [
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
-  { id: "contact", label: "Contact" },
+  { id: "certificates", label: "Certificates" },
+  { id: "contact", label: "Contact Me" },
 ];
 
 const SKILLS = [
-  { icon: Brain, title: "Machine Learning", desc: "Building smart models that learn from data and make predictions.", tags: ["Scikit-learn", "XGBoost"], level: 90 },
-  { icon: Network, title: "Deep Learning", desc: "Designing deep neural networks for complex patterns.", tags: ["PyTorch", "TensorFlow"], level: 85 },
-  { icon: MessageSquare, title: "NLP", desc: "Working with language models to understand and generate text.", tags: ["Transformers", "RAG"], level: 90 },
-  { icon: BarChart3, title: "Data Analytics", desc: "Turning raw data into meaningful insights and dashboards.", tags: ["SQL", "Power BI"], level: 85 },
-  { icon: Database, title: "MLOps", desc: "Deploying, monitoring and scaling ML models reliably.", tags: ["Docker", "MLflow"], level: 85 },
-  { icon: Sparkles, title: "Generative AI", desc: "Creating generative applications powered by LLMs.", tags: ["LangChain", "OpenAI"], level: 90 },
+  { icon: Code2, title: "Programming", desc: "Core development across multiple languages and web stacks.", tags: ["Python", "SQL", "HTML", "CSS", "Flask"], level: 90 },
+  { icon: Brain, title: "Machine Learning", desc: "Supervised, unsupervised & reinforcement learning workflows.", tags: ["Scikit-learn", "XGBoost"], level: 88 },
+  { icon: Network, title: "Deep Learning", desc: "Designing neural networks for vision and language tasks.", tags: ["PyTorch", "TensorFlow"], level: 85 },
+  { icon: MessageSquare, title: "NLP & Agentic AI", desc: "LLMs, RAG and multi-agent systems for real workflows.", tags: ["Transformers", "RAG", "LangChain"], level: 88 },
+  { icon: BarChart3, title: "Data Analytics", desc: "Turning raw data into dashboards and decisions.", tags: ["Tableau", "Power BI"], level: 85 },
+  { icon: Database, title: "Tools & MLOps", desc: "Version control, collaboration and deployment fundamentals.", tags: ["Git", "GitHub", "Docker"], level: 82 },
 ];
 
 const STATS = [
@@ -49,45 +51,45 @@ const STATS = [
   { icon: Target, value: "2+", label: "Years Exploring" },
 ];
 
-const TECHS = ["Py", "PT", "TF", "Dk", "Git", "FA", "PG"];
+const TECHS = ["Py", "SQL", "PT", "TF", "Git", "Tab", "PBI"];
 
 const HERO_HIGHLIGHTS = [
-  { icon: Brain, title: "NLP FOCUS", lines: ["Language Models, LLMs", "RAG, Prompt Engineering"] },
+  { icon: Brain, title: "AI FOCUS", lines: ["LLMs, RAG, Agentic AI", "NLP & Computer Vision"] },
   { icon: Rocket, title: "PROBLEM SOLVER", lines: ["Turning complex data", "into intelligent solutions"] },
-  { icon: Code2, title: "TECH ENTHUSIAST", lines: ["Python, PyTorch, LangChain", "Transformers, FastAPI"] },
-  { icon: Target, title: "IMPACT DRIVEN", lines: ["Building scalable systems", "that create real impact"] },
+  { icon: Code2, title: "TECH ENTHUSIAST", lines: ["Python, PyTorch, Flask", "Transformers, LangChain"] },
+  { icon: Target, title: "IMPACT DRIVEN", lines: ["SIH Internal Winner '25", "Ideathon 3.0 Finalist"] },
 ];
 
 const EXPERIENCE = [
   {
     period: "2024 — Present",
-    role: "Senior AI Research Engineer",
-    company: "Apex Tech",
+    role: "Machine Learning Trainee",
+    company: "Global Infoventures",
     icon: Briefcase,
     points: [
-      "Architected production-grade LLM pipelines serving 1M+ daily.",
-      "Led a team building retrieval-augmented AI systems.",
-      "Reduced inference latency by 40% via model distillation.",
+      "Built and trained ML models for real-world business use cases.",
+      "Worked on data preprocessing, feature engineering & evaluation.",
+      "Collaborated with engineers on deploying AI-driven workflows.",
     ],
   },
   {
-    period: "2021 — 2023",
-    role: "Machine Learning Engineer",
-    company: "Nimbus AI",
+    period: "2024",
+    role: "Cisco Virtual Internship",
+    company: "Cisco Networking Academy",
+    icon: ShieldCheck,
+    points: [
+      "Completed Python Essentials 1 & 2 with hands-on labs.",
+      "Built scripting projects covering OOP, modules and file I/O.",
+    ],
+  },
+  {
+    period: "2023 — Present",
+    role: "AI / ML Enthusiast & Hackathon Builder",
+    company: "ABESIT — CSE (AI)",
     icon: Bot,
     points: [
-      "Designed transformer-based NLP services for enterprise clients.",
-      "Built end-to-end MLOps stack on Kubernetes + MLflow.",
-    ],
-  },
-  {
-    period: "2019 — 2021",
-    role: "Data Analyst",
-    company: "Lumen Analytics",
-    icon: BarChart3,
-    points: [
-      "Delivered dashboards & forecasts that drove 15% revenue lift.",
-      "Owned data quality across 30+ reports pipelines.",
+      "SIH Internal Winner 2025 — built an AI-driven solution end-to-end.",
+      "Ideathon 3.0 Finalist; ABES EC Hackathon with PawPal.",
     ],
   },
 ];
@@ -103,16 +105,48 @@ const FEATURED = {
     { v: "24/7", l: "Monitoring" },
   ],
   live: "https://example.com",
-  github: "https://github.com/archeesinha",
+  github: "https://github.com/archeesinha05",
 };
 
 const PROJECTS = [
-  { icon: Bot, title: "AI Agent", desc: "Autonomous task-completion agent with tool-use & planning over LLM backbone.", tags: ["LangChain", "OpenAI", "RAG"], label: "DEPLOYED", live: "https://example.com", github: "https://github.com/archeesinha" },
-  { icon: FileType, title: "Text Summarizer", desc: "Abstractive summarizer fine-tuned on news + research corpora.", tags: ["Transformers", "PyTorch"], label: "RESEARCH", github: "https://github.com/archeesinha" },
-  { icon: ImageIcon, title: "Image Classifier", desc: "Vision model with augmentation pipeline reaching 97% top-1 accuracy.", tags: ["CNN", "TensorFlow"], label: "PRODUCTION", live: "https://example.com", github: "https://github.com/archeesinha" },
-  { icon: Activity, title: "AI Credit Scoring", desc: "ML model that predicts creditworthiness using financial behavior patterns.", tags: ["XGBoost", "Scikit-learn"], label: "HACKATHON", github: "https://github.com/archeesinha" },
-  { icon: Code2, title: "Code Assistant", desc: "IDE-integrated code-completion assistant with semantic context retrieval.", tags: ["LLM", "Embeddings"], label: "DEPLOYED", github: "https://github.com/archeesinha" },
-  { icon: Sparkles, title: "GenAI Studio", desc: "Multimodal generation playground combining diffusion + LLM pipelines.", tags: ["Diffusion", "Multimodal"], label: "RESEARCH", live: "https://example.com", github: "https://github.com/archeesinha" },
+  { icon: Dumbbell, title: "Real-Time AI Gym Trainer", desc: "AI-powered fitness assistant with pose estimation, posture correction, rep counting and live feedback.", tags: ["Python", "OpenCV", "MediaPipe", "Pose Estimation", "Computer Vision"], label: "BUILT", github: "https://github.com/archeesinha05" },
+  { icon: Heart, title: "V.I.T.A.L.S.", desc: "Agentic AI healthcare platform streamlining patient triage via multi-agent collaboration and LLM-powered clinical decision support.", tags: ["Agentic AI", "RAG", "LLM", "Healthcare AI", "Multi-Agent"], label: "RESEARCH", github: "https://github.com/archeesinha05" },
+  { icon: Bot, title: "AI Attendance System", desc: "Face-recognition based attendance with real-time logging and admin dashboard.", tags: ["Python", "OpenCV", "Face Recognition"], label: "DEPLOYED", github: "https://github.com/archeesinha05" },
+  { icon: ImageIcon, title: "Neural Style Transfer", desc: "Deep-learning model applying artistic styles onto images using CNN feature representations.", tags: ["PyTorch", "CNN", "Deep Learning"], label: "RESEARCH", github: "https://github.com/archeesinha05" },
+  { icon: FileType, title: "AI Resume ATS System", desc: "NLP-driven resume parser & ATS scorer matching profiles against job descriptions.", tags: ["NLP", "Python", "Flask"], label: "PRODUCTION", github: "https://github.com/archeesinha05" },
+  { icon: Activity, title: "AI Credit Scoring", desc: "ML model predicting creditworthiness from financial behavior patterns.", tags: ["XGBoost", "Scikit-learn"], label: "HACKATHON", github: "https://github.com/archeesinha05" },
+  { icon: Code2, title: "Code Assistant", desc: "IDE-integrated code-completion assistant with semantic context retrieval.", tags: ["LLM", "Embeddings"], label: "DEPLOYED", github: "https://github.com/archeesinha05" },
+  { icon: Sparkles, title: "GenAI Studio", desc: "Multimodal generation playground combining diffusion + LLM pipelines.", tags: ["Diffusion", "Multimodal"], label: "RESEARCH", live: "https://example.com", github: "https://github.com/archeesinha05" },
+];
+
+const CERTIFICATES = [
+  {
+    icon: Code2,
+    title: "Programming",
+    items: [
+      "Complete Bootcamp: Zero to Hero in Python — Udemy",
+      "Python Essentials 1 — Cisco",
+      "Python Essentials 2 — Cisco",
+      "Data Structures & Algorithms (DSA) — CodeChef",
+    ],
+  },
+  {
+    icon: Brain,
+    title: "AI / ML",
+    items: [
+      "AI / ML Certification — Apna College",
+      "Machine Learning & Data Science — GeeksforGeeks",
+      "Foundations of Generative AI — IBM",
+      "Getting Started with Generative AI — IBM",
+    ],
+  },
+  {
+    icon: BarChart3,
+    title: "Data Analytics",
+    items: [
+      "Tableau — Certificate of Completion",
+    ],
+  },
 ];
 
 function Index() {
@@ -125,13 +159,13 @@ function Index() {
   return (
     <div className="min-h-screen text-foreground">
       <CustomCursor />
-      <ThemeToggle />
       <Nav />
       <Hero roleIdx={roleIdx} />
       <PortfolioBanner />
       <Skills />
       <Experience />
       <Projects />
+      <Certificates />
       <Contact />
       <footer className="py-8 text-center text-sm text-muted-foreground">
         © {new Date().getFullYear()} Archee Sinha. Crafted with care.
@@ -140,46 +174,61 @@ function Index() {
   );
 }
 
-/* ---------- Theme toggle ---------- */
-function ThemeToggle() {
-  const [light, setLight] = useState(false);
-  useEffect(() => {
-    document.documentElement.classList.toggle("light", light);
-  }, [light]);
-  return (
-    <button
-      onClick={() => setLight((v) => !v)}
-      aria-label="Toggle theme"
-      className="fixed top-4 right-4 z-[60] w-11 h-11 rounded-full hud-frame flex items-center justify-center hover:scale-110 transition"
-      style={{ boxShadow: "0 0 24px oklch(0.74 0.28 340 / .5)" }}
-    >
-      {light ? <Moon size={18} className="text-primary" /> : <Sun size={18} className="text-primary" />}
-    </button>
-  );
-}
-
-/* ---------- Custom cursor ---------- */
+/* ---------- Custom cursor with spring physics ---------- */
 function CustomCursor() {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const coreRef = useRef<HTMLDivElement | null>(null);
+  const ringRef = useRef<HTMLDivElement | null>(null);
+  const ring2Ref = useRef<HTMLDivElement | null>(null);
+  const rippleRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(max-width: 768px)").matches) return;
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
+    const core = coreRef.current, ring = ringRef.current, ring2 = ring2Ref.current;
+    if (!core || !ring || !ring2) return;
+
+    let tx = window.innerWidth / 2, ty = window.innerHeight / 2;
+    let cx = tx, cy = ty;
+    let rx = tx, ry = ty;
+    let r2x = tx, r2y = ty;
     let raf = 0;
-    let x = window.innerWidth / 2, y = window.innerHeight / 2;
-    let tx = x, ty = y;
+
     const tick = () => {
-      x += (tx - x) * 0.25; y += (ty - y) * 0.25;
-      el.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+      cx += (tx - cx) * 0.55;
+      cy += (ty - cy) * 0.55;
+      rx += (tx - rx) * 0.22;
+      ry += (ty - ry) * 0.22;
+      r2x += (tx - r2x) * 0.12;
+      r2y += (ty - r2y) * 0.12;
+
+      core.style.transform = `translate3d(${cx}px, ${cy}px, 0) translate(-50%, -50%)`;
+      ring.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%)`;
+      ring2.style.transform = `translate3d(${r2x}px, ${r2y}px, 0) translate(-50%, -50%)`;
       raf = requestAnimationFrame(tick);
     };
+
     const onMove = (e: MouseEvent) => { tx = e.clientX; ty = e.clientY; };
     const onOver = (e: MouseEvent) => {
       const t = e.target as HTMLElement;
-      if (t.closest("a,button,input,textarea,[role='button']")) el.classList.add("is-hover");
-      else el.classList.remove("is-hover");
+      const hov = !!t.closest("a,button,input,textarea,[role='button']");
+      core.classList.toggle("is-hover", hov);
+      ring.classList.toggle("is-hover", hov);
+      ring2.classList.toggle("is-hover", hov);
     };
-    const onDown = () => el.classList.add("is-click");
-    const onUp = () => el.classList.remove("is-click");
+    const onDown = (e: MouseEvent) => {
+      core.classList.add("is-click");
+      const rip = rippleRef.current;
+      if (rip) {
+        rip.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+        rip.classList.remove("play");
+        void rip.offsetWidth;
+        rip.classList.add("play");
+      }
+    };
+    const onUp = () => core.classList.remove("is-click");
+
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseover", onOver);
     window.addEventListener("mousedown", onDown);
@@ -193,14 +242,22 @@ function CustomCursor() {
       window.removeEventListener("mouseup", onUp);
     };
   }, []);
+
   return (
-    <div ref={ref} className="cursor-orbit" aria-hidden>
-      <span className="c-ring" />
-      <span className="c-ring r2" />
-      <span className="c-core" />
-      <span className="c-particle" style={{ ["--r" as never]: "22px", animationDuration: "2.5s" } as React.CSSProperties} />
-      <span className="c-particle" style={{ ["--r" as never]: "22px", animationDuration: "2.5s", animationDelay: "-1.2s" } as React.CSSProperties} />
-      <span className="c-particle" style={{ ["--r" as never]: "16px", animationDuration: "1.8s", animationDelay: "-0.6s" } as React.CSSProperties} />
+    <div className="cursor-root" aria-hidden>
+      <div ref={ring2Ref} className="c-ring-wrap r2">
+        <span className="c-ring rb" />
+        <span className="c-particle p1" />
+        <span className="c-particle p2" />
+        <span className="c-particle p3" />
+      </div>
+      <div ref={ringRef} className="c-ring-wrap">
+        <span className="c-ring" />
+      </div>
+      <div ref={coreRef} className="c-core-wrap">
+        <span className="c-core" />
+      </div>
+      <div ref={rippleRef} className="c-ripple" />
     </div>
   );
 }
@@ -221,7 +278,7 @@ function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   return (
-    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 nav-shell rounded-2xl px-3 py-2">
+    <nav className="nav-root fixed top-4 left-1/2 -translate-x-1/2 z-50 nav-shell rounded-2xl px-3 py-2">
       <ul className="flex items-center gap-2 sm:gap-3 text-[11px] sm:text-sm">
         {NAV.map((n, i) => (
           <React.Fragment key={n.id}>
@@ -270,7 +327,7 @@ function Hero({ roleIdx }: { roleIdx: number }) {
       <div className="relative z-10 max-w-6xl w-full mx-auto grid md:grid-cols-2 gap-12 items-center">
         <div className="animate-fade-up text-center md:text-left">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/50 text-xs tracking-[0.3em] text-primary mb-6">
-            <Sparkles size={12} /> NLP SPECIALIST <Sparkles size={12} />
+            <Sparkles size={12} /> AI • ML • NLP <Sparkles size={12} />
           </div>
           <p className="flex items-center gap-3 text-sm text-muted-foreground mb-3 md:justify-start justify-center">
             <span className="h-px w-8 bg-primary" /> Crafting intelligence. Driving impact.
@@ -286,14 +343,14 @@ function Hero({ roleIdx }: { roleIdx: number }) {
             </div>
           </div>
           <p className="mt-6 text-muted-foreground max-w-md mx-auto md:mx-0">
-            I build <span className="text-primary font-semibold">intelligent</span> systems at the intersection of research and production — from large language models to real-time analytics.
+            B.Tech CSE (AI) student at ABESIT — building <span className="text-primary font-semibold">intelligent</span> systems across LLMs, computer vision and real-time analytics.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 justify-center md:justify-start">
             <a href="https://linkedin.com/in/archeesinha" target="_blank" rel="noreferrer"
               className="btn-glow inline-flex items-center gap-2 px-5 py-3 rounded-full font-medium">
               <Linkedin size={18} /> LinkedIn
             </a>
-            <a href="https://github.com/archeesinha" target="_blank" rel="noreferrer"
+            <a href="https://github.com/archeesinha05" target="_blank" rel="noreferrer"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-full font-medium glow-card hover:text-primary">
               <Github size={18} /> GitHub
             </a>
@@ -303,7 +360,6 @@ function Hero({ roleIdx }: { roleIdx: number }) {
           </div>
         </div>
 
-        {/* Profile + orbits */}
         <div className="relative h-[440px] flex items-center justify-center">
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="relative w-[380px] h-[380px]">
@@ -323,7 +379,6 @@ function Hero({ roleIdx }: { roleIdx: number }) {
         </div>
       </div>
 
-      {/* highlight strip */}
       <div className="relative z-10 max-w-6xl mx-auto mt-12 w-full grid grid-cols-2 lg:grid-cols-4 gap-3 hud-frame rounded-2xl p-4">
         {HERO_HIGHLIGHTS.map((h) => (
           <div key={h.title} className="flex items-center gap-3 px-2 py-2">
@@ -364,7 +419,6 @@ function useReveal<T extends HTMLElement = HTMLDivElement>() {
   return ref;
 }
 
-/* ---------- Portfolio banner (unchanged) ---------- */
 function PortfolioBanner() {
   return (
     <section className="relative py-16 px-6 overflow-hidden">
@@ -405,7 +459,6 @@ function PortfolioBanner() {
   );
 }
 
-/* ---------- Skills ---------- */
 function Skills() {
   const ref = useReveal<HTMLDivElement>();
   return (
@@ -426,7 +479,7 @@ function Skills() {
           ))}
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {SKILLS.map((s, i) => (
             <div key={s.title} className="skill-big animate-fade-up" style={{ animationDelay: `${i * 0.07}s` }}>
               <div className="flex items-center gap-3 mb-4 relative z-10">
@@ -454,7 +507,7 @@ function Skills() {
             </div>
             <p className="text-sm">I love turning ideas into <span className="text-primary font-semibold">intelligent solutions</span>.<br /><span className="text-muted-foreground">Always learning. Always building.</span></p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-wrap">
             <p className="text-xs font-bold tracking-wider text-primary mr-2">TECHNOLOGIES I USE</p>
             {TECHS.map((t) => (<div key={t} className="tech-chip text-primary">{t}</div>))}
           </div>
@@ -464,7 +517,6 @@ function Skills() {
   );
 }
 
-/* ---------- Experience ---------- */
 function Experience() {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [progress, setProgress] = useState(0);
@@ -538,13 +590,36 @@ function ExperienceItem({ item, side }: { item: typeof EXPERIENCE[number]; side:
   );
 }
 
-/* ---------- Projects ---------- */
 function Projects() {
   const railRef = useRef<HTMLDivElement | null>(null);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+
+  const updateEdges = React.useCallback(() => {
+    const el = railRef.current; if (!el) return;
+    setAtStart(el.scrollLeft <= 4);
+    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 4);
+  }, []);
+
+  useEffect(() => {
+    const el = railRef.current; if (!el) return;
+    updateEdges();
+    el.addEventListener("scroll", updateEdges, { passive: true });
+    window.addEventListener("resize", updateEdges);
+    return () => {
+      el.removeEventListener("scroll", updateEdges);
+      window.removeEventListener("resize", updateEdges);
+    };
+  }, [updateEdges]);
+
   const scroll = (dir: 1 | -1) => {
     const el = railRef.current; if (!el) return;
-    el.scrollBy({ left: dir * Math.min(el.clientWidth * 0.7, 420), behavior: "smooth" });
+    const card = el.querySelector<HTMLElement>(".project-card");
+    const gap = 24;
+    const step = card ? card.offsetWidth + gap : el.clientWidth * 0.7;
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
   };
+
   return (
     <section id="projects" className="py-24 px-6 relative">
       <div className="max-w-7xl mx-auto">
@@ -555,7 +630,6 @@ function Projects() {
         </div>
         <p className="text-center text-muted-foreground mb-10">AI solutions built with <span className="text-primary">code</span>, <span className="text-primary">creativity</span> and <span className="text-primary">curiosity</span>.</p>
 
-        {/* Featured project */}
         <div className="featured-project mb-10 grid lg:grid-cols-[1.2fr_1fr] gap-6">
           <div>
             <p className="text-xs tracking-widest text-primary mb-3">★ FEATURED PROJECT</p>
@@ -588,14 +662,13 @@ function Projects() {
           </div>
         </div>
 
-        {/* Horizontal rail */}
         <div className="relative">
-          <button onClick={() => scroll(-1)} aria-label="Scroll left"
-            className="hidden sm:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full items-center justify-center glow-card hover:text-primary">
+          <button onClick={() => scroll(-1)} disabled={atStart} aria-label="Scroll projects left"
+            className={`nav-arrow hidden sm:flex absolute -left-2 top-1/2 -translate-y-1/2 z-10 ${atStart ? "is-disabled" : ""}`}>
             <ChevronLeft />
           </button>
-          <button onClick={() => scroll(1)} aria-label="Scroll right"
-            className="hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full items-center justify-center glow-card hover:text-primary">
+          <button onClick={() => scroll(1)} disabled={atEnd} aria-label="Scroll projects right"
+            className={`nav-arrow hidden sm:flex absolute -right-2 top-1/2 -translate-y-1/2 z-10 ${atEnd ? "is-disabled" : ""}`}>
             <ChevronRight />
           </button>
 
@@ -605,7 +678,7 @@ function Projects() {
           <div ref={railRef} className="project-rail flex gap-6 overflow-x-auto py-10 px-12 sm:px-16">
             {PROJECTS.map((p) => (
               <article key={p.title} className="project-card glow-card rounded-3xl shrink-0 w-[300px] sm:w-[330px] h-[380px] p-6 flex flex-col relative overflow-hidden">
-                <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full opacity-20 blur-2xl" style={{ background: "var(--gradient-primary)" }} />
+                <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full opacity-20" style={{ background: "var(--gradient-primary)" }} />
                 <p className="text-[10px] tracking-widest text-primary mb-3 relative z-10">● {p.label}</p>
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 relative z-10" style={{ background: "var(--gradient-primary)" }}>
                   <p.icon className="text-primary-foreground" size={26} />
@@ -640,7 +713,37 @@ function Projects() {
   );
 }
 
-/* ---------- Contact ---------- */
+function Certificates() {
+  const ref = useReveal<HTMLDivElement>();
+  return (
+    <section id="certificates" className="py-24 px-6">
+      <div ref={ref} className="max-w-6xl mx-auto reveal">
+        <SectionTitle>Certificates</SectionTitle>
+        <p className="text-center text-muted-foreground mb-12">Recognised <span className="text-primary">learning</span> across programming, AI/ML and analytics.</p>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {CERTIFICATES.map((c, i) => (
+            <div key={c.title} className="skill-big animate-fade-up" style={{ animationDelay: `${i * 0.1}s` }}>
+              <div className="flex items-center gap-3 mb-4 relative z-10">
+                <div className="skill-ico-big"><c.icon className="text-primary-foreground" size={22} /></div>
+                <h3 className="font-semibold text-base">{c.title}</h3>
+              </div>
+              <ul className="space-y-2 relative z-10">
+                {c.items.map((it) => (
+                  <li key={it} className="flex gap-2 text-sm text-muted-foreground">
+                    <Award size={14} className="text-primary shrink-0 mt-0.5" />
+                    <span>{it}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Contact() {
   const [sent, setSent] = useState(false);
   return (
@@ -652,7 +755,7 @@ function Contact() {
         <div className="grid sm:grid-cols-3 gap-4 mb-8">
           {[
             { Icon: Users, label: "Connect", sub: "Let's connect and build something great.", href: "https://linkedin.com/in/archeesinha" },
-            { Icon: Mail, label: "Email Me", sub: "Drop me an email anytime!", href: "mailto:archee.sinha.ai@gmail.com" },
+            { Icon: Mail, label: "Email Me", sub: "Drop me an email anytime!", href: "mailto:archeesinha05@gmail.com" },
             { Icon: FileText, label: "Resume", sub: "View my resume and experience.", href: "#" },
           ].map(({ Icon, label, sub, href }) => (
             <a key={label} href={href} target="_blank" rel="noreferrer" className="hud-frame rounded-2xl p-6 flex items-center gap-4 hover:scale-[1.02] transition">
@@ -675,10 +778,10 @@ function Contact() {
               I'm always open to <span className="text-primary font-semibold">discussing new projects</span>, creative ideas or opportunities to be part of your vision.
             </p>
             <div className="mt-6 space-y-3 text-sm">
-              <div className="flex items-center gap-3"><MapPin size={16} className="text-primary" /> India, Earth</div>
-              <div className="flex items-center gap-3"><Mail size={16} className="text-primary" /> archee.sinha.ai@gmail.com</div>
-              <div className="flex items-center gap-3"><Phone size={16} className="text-primary" /> +91 98765 43210</div>
-              <div className="flex items-center gap-3"><Clock size={16} className="text-primary" /> Available for Freelance & Full-time</div>
+              <div className="flex items-center gap-3"><MapPin size={16} className="text-primary" /> India</div>
+              <div className="flex items-center gap-3"><Mail size={16} className="text-primary" /> archeesinha05@gmail.com</div>
+              <div className="flex items-center gap-3"><Phone size={16} className="text-primary" /> +91 99580 96644</div>
+              <div className="flex items-center gap-3"><Clock size={16} className="text-primary" /> Available for Internships & Collaborations</div>
             </div>
             <div className="mt-6 inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-green-500/50 text-xs">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
@@ -708,9 +811,9 @@ function Contact() {
           <div className="flex items-center justify-center gap-4">
             {[
               { Icon: Linkedin, href: "https://linkedin.com/in/archeesinha" },
-              { Icon: Github, href: "https://github.com/archeesinha" },
-              { Icon: Twitter, href: "https://twitter.com" },
-              { Icon: Instagram, href: "https://instagram.com" },
+              { Icon: Github, href: "https://github.com/archeesinha05" },
+              { Icon: Mail, href: "mailto:archeesinha05@gmail.com" },
+              { Icon: Phone, href: "tel:+919958096644" },
             ].map(({ Icon, href }, i) => (
               <a key={i} href={href} target="_blank" rel="noreferrer"
                 className="w-12 h-12 rounded-full flex items-center justify-center border border-primary/50 text-primary hover:scale-110 hover:bg-primary hover:text-primary-foreground transition">
