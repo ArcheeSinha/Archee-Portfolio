@@ -329,7 +329,7 @@ function Hero({ roleIdx }: { roleIdx: number }) {
       <div className="relative z-10 max-w-6xl w-full mx-auto grid md:grid-cols-2 gap-12 items-center">
         <div className="animate-fade-up text-center md:text-left">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/50 text-xs tracking-[0.3em] text-primary mb-6">
-            <Sparkles size={12} /> AI • ML • NLP <Sparkles size={12} />
+            <Sparkles size={12} /> AI &amp; ML ENTHUSIAST <Sparkles size={12} />
           </div>
           <p className="flex items-center gap-3 text-sm text-muted-foreground mb-3 md:justify-start justify-center">
             <span className="h-px w-8 bg-primary" /> Crafting intelligence. Driving impact.
@@ -344,8 +344,8 @@ function Hero({ roleIdx }: { roleIdx: number }) {
               ))}
             </div>
           </div>
-          <p className="mt-6 text-muted-foreground max-w-md mx-auto md:mx-0">
-            B.Tech CSE (AI) student at ABESIT — building <span className="text-primary font-semibold">intelligent</span> systems across LLMs, computer vision and real-time analytics.
+          <p className="mt-6 text-muted-foreground max-w-xl mx-auto md:mx-0">
+            AI-focused Computer Science student with a strong foundation in <span className="text-primary font-semibold">Machine Learning</span>, Data Structures &amp; Algorithms, and Software Development. Skilled in Python and passionate about building intelligent, scalable solutions to real-world problems through AI and innovation.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 justify-center md:justify-start">
             <a href="https://linkedin.com/in/archeesinha" target="_blank" rel="noreferrer"
