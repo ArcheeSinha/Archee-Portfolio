@@ -1,1 +1,11 @@
-bun install && bun dev
+# Archee Sinha — Portfolio
+# Stack: TanStack Start (React 19 + Vite 7) — Node/Bun runtime, not Python.
+# Install + run locally:
+#
+#   bun install && bun dev
+#
+# (or)  npm install && npm run dev
+#
+# Production build:
+#
+#   bun run build && bun start

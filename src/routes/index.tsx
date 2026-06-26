@@ -24,7 +24,12 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const ROLES = ["AI Engineer", "ML Engineer", "Data Analyst", "NLP Specialist"];
+const ROLES = [
+  "AI & Machine Learning Enthusiast",
+  "AI/ML Developer",
+  "Computer Science Student",
+  "Python Developer",
+];
 
 const NAV = [
   { id: "home", label: "Home" },
@@ -53,11 +58,29 @@ const STATS = [
 
 const TECHS = ["Py", "SQL", "PT", "TF", "Git", "Tab", "PBI"];
 
+const TECH_LOGOS: { name: string; slug: string }[] = [
+  { name: "Python", slug: "python" },
+  { name: "SQL", slug: "mysql" },
+  { name: "Flask", slug: "flask" },
+  { name: "Git", slug: "git" },
+  { name: "GitHub", slug: "github" },
+  { name: "HTML5", slug: "html5" },
+  { name: "CSS3", slug: "css3" },
+  { name: "Tableau", slug: "tableau" },
+  { name: "Power BI", slug: "powerbi" },
+  { name: "OpenCV", slug: "opencv" },
+  { name: "MediaPipe", slug: "mediapipe" },
+  { name: "PyTorch", slug: "pytorch" },
+  { name: "TensorFlow", slug: "tensorflow" },
+  { name: "LangChain", slug: "langchain" },
+  { name: "Hugging Face", slug: "huggingface" },
+];
+
 const HERO_HIGHLIGHTS = [
-  { icon: Brain, title: "AI FOCUS", lines: ["LLMs, RAG, Agentic AI", "NLP & Computer Vision"] },
-  { icon: Rocket, title: "PROBLEM SOLVER", lines: ["Turning complex data", "into intelligent solutions"] },
-  { icon: Code2, title: "TECH ENTHUSIAST", lines: ["Python, PyTorch, Flask", "Transformers, LangChain"] },
-  { icon: Target, title: "IMPACT DRIVEN", lines: ["SIH Internal Winner '25", "Ideathon 3.0 Finalist"] },
+  { icon: Brain, title: "AI / ML FOCUS", lines: ["Deep Learning, Agentic AI", "Supervised/Unsupervised"] },
+  { icon: Rocket, title: "PROBLEM SOLVER", lines: ["Turning data and ML", "into real-world solutions"] },
+  { icon: Code2, title: "TECH ENTHUSIAST", lines: ["Python, SQL, Flask,", "Git & Data Analytics"] },
+  { icon: Award, title: "ACADEMIC EXCELLENCE", lines: ["B.Tech in CSE (AI)", "CGPA: 8.0/10.0"] },
 ];
 
 const EXPERIENCE = [
@@ -80,16 +103,6 @@ const EXPERIENCE = [
     points: [
       "Completed Python Essentials 1 & 2 with hands-on labs.",
       "Built scripting projects covering OOP, modules and file I/O.",
-    ],
-  },
-  {
-    period: "2023 — Present",
-    role: "AI / ML Enthusiast & Hackathon Builder",
-    company: "ABESIT — CSE (AI)",
-    icon: Bot,
-    points: [
-      "SIH Internal Winner 2025 — built an AI-driven solution end-to-end.",
-      "Ideathon 3.0 Finalist; ABES EC Hackathon with PawPal.",
     ],
   },
 ];
@@ -145,6 +158,13 @@ const CERTIFICATES = [
     title: "Data Analytics",
     items: [
       "Tableau — Certificate of Completion",
+    ],
+  },
+  {
+    icon: MessageCircle,
+    title: "Languages",
+    items: [
+      "Fit in Deutsch 1 — Goethe-Institut",
     ],
   },
 ];
@@ -327,7 +347,7 @@ function Hero({ roleIdx }: { roleIdx: number }) {
       <div className="relative z-10 max-w-6xl w-full mx-auto grid md:grid-cols-2 gap-12 items-center">
         <div className="animate-fade-up text-center md:text-left">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/50 text-xs tracking-[0.3em] text-primary mb-6">
-            <Sparkles size={12} /> AI • ML • NLP <Sparkles size={12} />
+            <Sparkles size={12} /> AI &amp; ML ENTHUSIAST <Sparkles size={12} />
           </div>
           <p className="flex items-center gap-3 text-sm text-muted-foreground mb-3 md:justify-start justify-center">
             <span className="h-px w-8 bg-primary" /> Crafting intelligence. Driving impact.
@@ -342,8 +362,8 @@ function Hero({ roleIdx }: { roleIdx: number }) {
               ))}
             </div>
           </div>
-          <p className="mt-6 text-muted-foreground max-w-md mx-auto md:mx-0">
-            B.Tech CSE (AI) student at ABESIT — building <span className="text-primary font-semibold">intelligent</span> systems across LLMs, computer vision and real-time analytics.
+          <p className="mt-6 text-muted-foreground max-w-xl mx-auto md:mx-0">
+            AI-focused Computer Science student with a strong foundation in <span className="text-primary font-semibold">Machine Learning</span>, Data Structures &amp; Algorithms, and Software Development. Skilled in Python and passionate about building intelligent, scalable solutions to real-world problems through AI and innovation.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 justify-center md:justify-start">
             <a href="https://linkedin.com/in/archeesinha" target="_blank" rel="noreferrer"
@@ -500,6 +520,25 @@ function Skills() {
           ))}
         </div>
 
+        <div className="mt-10 hud-frame rounded-2xl p-6">
+          <p className="text-xs tracking-widest text-primary mb-5 text-center">OFFICIAL TECH STACK</p>
+          <div className="grid grid-cols-5 sm:grid-cols-8 lg:grid-cols-[repeat(15,minmax(0,1fr))] gap-3">
+            {TECH_LOGOS.map((t) => (
+              <div key={t.name} title={t.name} className="tech-logo group">
+                <img
+                  src={`https://cdn.simpleicons.org/${t.slug}/E91E8A`}
+                  alt={t.name}
+                  loading="lazy"
+                  width={28}
+                  height={28}
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "0.35"; }}
+                />
+                <span className="tech-logo-label">{t.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-8 hud-frame rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-6">
           <div className="flex items-center gap-4 flex-1">
             <div className="w-14 h-14 rounded-full flex items-center justify-center border border-primary/40" style={{ background: "oklch(0.62 0.28 340 / .15)" }}>
@@ -611,6 +650,47 @@ function Projects() {
       window.removeEventListener("resize", updateEdges);
     };
   }, [updateEdges]);
+
+  // Auto-scrolling marquee with inertia; pauses on hover, focus, drag
+  useEffect(() => {
+    const el = railRef.current; if (!el) return;
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let raf = 0;
+    let paused = false;
+    let lastUserScroll = 0;
+    const speed = 0.45; // px per frame ~ 27px/s, gentle
+    const onEnter = () => { paused = true; };
+    const onLeave = () => { paused = false; };
+    const onUser = () => { lastUserScroll = performance.now(); };
+    const tick = () => {
+      if (!paused && performance.now() - lastUserScroll > 1500) {
+        const max = el.scrollWidth - el.clientWidth;
+        if (max > 4) {
+          let next = el.scrollLeft + speed;
+          if (next >= max - 1) next = 0;
+          el.scrollLeft = next;
+        }
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    el.addEventListener("mouseenter", onEnter);
+    el.addEventListener("mouseleave", onLeave);
+    el.addEventListener("focusin", onEnter);
+    el.addEventListener("focusout", onLeave);
+    el.addEventListener("wheel", onUser, { passive: true });
+    el.addEventListener("touchstart", onUser, { passive: true });
+    raf = requestAnimationFrame(tick);
+    return () => {
+      cancelAnimationFrame(raf);
+      el.removeEventListener("mouseenter", onEnter);
+      el.removeEventListener("mouseleave", onLeave);
+      el.removeEventListener("focusin", onEnter);
+      el.removeEventListener("focusout", onLeave);
+      el.removeEventListener("wheel", onUser);
+      el.removeEventListener("touchstart", onUser);
+    };
+  }, []);
 
   const scroll = (dir: 1 | -1) => {
     const el = railRef.current; if (!el) return;
