@@ -58,6 +58,24 @@ const STATS = [
 
 const TECHS = ["Py", "SQL", "PT", "TF", "Git", "Tab", "PBI"];
 
+const TECH_LOGOS: { name: string; slug: string }[] = [
+  { name: "Python", slug: "python" },
+  { name: "SQL", slug: "mysql" },
+  { name: "Flask", slug: "flask" },
+  { name: "Git", slug: "git" },
+  { name: "GitHub", slug: "github" },
+  { name: "HTML5", slug: "html5" },
+  { name: "CSS3", slug: "css3" },
+  { name: "Tableau", slug: "tableau" },
+  { name: "Power BI", slug: "powerbi" },
+  { name: "OpenCV", slug: "opencv" },
+  { name: "MediaPipe", slug: "mediapipe" },
+  { name: "PyTorch", slug: "pytorch" },
+  { name: "TensorFlow", slug: "tensorflow" },
+  { name: "LangChain", slug: "langchain" },
+  { name: "Hugging Face", slug: "huggingface" },
+];
+
 const HERO_HIGHLIGHTS = [
   { icon: Brain, title: "AI / ML FOCUS", lines: ["Deep Learning, Agentic AI", "Supervised/Unsupervised"] },
   { icon: Rocket, title: "PROBLEM SOLVER", lines: ["Turning data and ML", "into real-world solutions"] },
@@ -500,6 +518,25 @@ function Skills() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-10 hud-frame rounded-2xl p-6">
+          <p className="text-xs tracking-widest text-primary mb-5 text-center">OFFICIAL TECH STACK</p>
+          <div className="grid grid-cols-5 sm:grid-cols-8 lg:grid-cols-[repeat(15,minmax(0,1fr))] gap-3">
+            {TECH_LOGOS.map((t) => (
+              <div key={t.name} title={t.name} className="tech-logo group">
+                <img
+                  src={`https://cdn.simpleicons.org/${t.slug}/E91E8A`}
+                  alt={t.name}
+                  loading="lazy"
+                  width={28}
+                  height={28}
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "0.35"; }}
+                />
+                <span className="tech-logo-label">{t.name}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="mt-8 hud-frame rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-6">
