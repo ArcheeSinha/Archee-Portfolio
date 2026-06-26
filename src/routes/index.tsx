@@ -651,6 +651,47 @@ function Projects() {
     };
   }, [updateEdges]);
 
+  // Auto-scrolling marquee with inertia; pauses on hover, focus, drag
+  useEffect(() => {
+    const el = railRef.current; if (!el) return;
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let raf = 0;
+    let paused = false;
+    let lastUserScroll = 0;
+    const speed = 0.45; // px per frame ~ 27px/s, gentle
+    const onEnter = () => { paused = true; };
+    const onLeave = () => { paused = false; };
+    const onUser = () => { lastUserScroll = performance.now(); };
+    const tick = () => {
+      if (!paused && performance.now() - lastUserScroll > 1500) {
+        const max = el.scrollWidth - el.clientWidth;
+        if (max > 4) {
+          let next = el.scrollLeft + speed;
+          if (next >= max - 1) next = 0;
+          el.scrollLeft = next;
+        }
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    el.addEventListener("mouseenter", onEnter);
+    el.addEventListener("mouseleave", onLeave);
+    el.addEventListener("focusin", onEnter);
+    el.addEventListener("focusout", onLeave);
+    el.addEventListener("wheel", onUser, { passive: true });
+    el.addEventListener("touchstart", onUser, { passive: true });
+    raf = requestAnimationFrame(tick);
+    return () => {
+      cancelAnimationFrame(raf);
+      el.removeEventListener("mouseenter", onEnter);
+      el.removeEventListener("mouseleave", onLeave);
+      el.removeEventListener("focusin", onEnter);
+      el.removeEventListener("focusout", onLeave);
+      el.removeEventListener("wheel", onUser);
+      el.removeEventListener("touchstart", onUser);
+    };
+  }, []);
+
   const scroll = (dir: 1 | -1) => {
     const el = railRef.current; if (!el) return;
     const card = el.querySelector<HTMLElement>(".project-card");
