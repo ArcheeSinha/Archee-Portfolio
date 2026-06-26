@@ -24,7 +24,12 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const ROLES = ["AI Engineer", "ML Engineer", "Data Analyst", "NLP Specialist"];
+const ROLES = [
+  "AI & Machine Learning Enthusiast",
+  "AI/ML Developer",
+  "Computer Science Student",
+  "Python Developer",
+];
 
 const NAV = [
   { id: "home", label: "Home" },
@@ -54,10 +59,10 @@ const STATS = [
 const TECHS = ["Py", "SQL", "PT", "TF", "Git", "Tab", "PBI"];
 
 const HERO_HIGHLIGHTS = [
-  { icon: Brain, title: "AI FOCUS", lines: ["LLMs, RAG, Agentic AI", "NLP & Computer Vision"] },
-  { icon: Rocket, title: "PROBLEM SOLVER", lines: ["Turning complex data", "into intelligent solutions"] },
-  { icon: Code2, title: "TECH ENTHUSIAST", lines: ["Python, PyTorch, Flask", "Transformers, LangChain"] },
-  { icon: Target, title: "IMPACT DRIVEN", lines: ["SIH Internal Winner '25", "Ideathon 3.0 Finalist"] },
+  { icon: Brain, title: "AI / ML FOCUS", lines: ["Deep Learning, Agentic AI", "Supervised/Unsupervised"] },
+  { icon: Rocket, title: "PROBLEM SOLVER", lines: ["Turning data and ML", "into real-world solutions"] },
+  { icon: Code2, title: "TECH ENTHUSIAST", lines: ["Python, SQL, Flask,", "Git & Data Analytics"] },
+  { icon: Award, title: "ACADEMIC EXCELLENCE", lines: ["B.Tech in CSE (AI)", "CGPA: 8.0/10.0"] },
 ];
 
 const EXPERIENCE = [
@@ -80,16 +85,6 @@ const EXPERIENCE = [
     points: [
       "Completed Python Essentials 1 & 2 with hands-on labs.",
       "Built scripting projects covering OOP, modules and file I/O.",
-    ],
-  },
-  {
-    period: "2023 — Present",
-    role: "AI / ML Enthusiast & Hackathon Builder",
-    company: "ABESIT — CSE (AI)",
-    icon: Bot,
-    points: [
-      "SIH Internal Winner 2025 — built an AI-driven solution end-to-end.",
-      "Ideathon 3.0 Finalist; ABES EC Hackathon with PawPal.",
     ],
   },
 ];
@@ -145,6 +140,13 @@ const CERTIFICATES = [
     title: "Data Analytics",
     items: [
       "Tableau — Certificate of Completion",
+    ],
+  },
+  {
+    icon: MessageCircle,
+    title: "Languages",
+    items: [
+      "Fit in Deutsch 1 — Goethe-Institut",
     ],
   },
 ];
