@@ -485,6 +485,32 @@
 }
 .tech-chip:hover { transform: translateY(-4px) scale(1.08); box-shadow: 0 0 18px oklch(0.74 0.30 340 / .6); }
 
+/* Official tech logos */
+.tech-logo {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; gap: .4rem;
+  padding: .75rem .5rem;
+  border-radius: .75rem;
+  background: linear-gradient(135deg, oklch(0.14 0.06 15 / .55), oklch(0.10 0.05 340 / .45));
+  border: 1px solid oklch(0.62 0.28 340 / .25);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.tech-logo img {
+  width: 28px; height: 28px; object-fit: contain;
+  filter: drop-shadow(0 0 6px oklch(0.74 0.30 340 / .55));
+  transition: transform .35s cubic-bezier(.2,.8,.2,1);
+}
+.tech-logo:hover {
+  transform: translateY(-3px);
+  border-color: oklch(0.74 0.30 340 / .8);
+  box-shadow: 0 8px 22px oklch(0.65 0.28 340 / .4);
+}
+.tech-logo:hover img { transform: scale(1.15) rotate(-4deg); }
+.tech-logo-label {
+  font-size: .62rem; letter-spacing: .08em; text-transform: uppercase;
+  color: oklch(0.78 0.05 340); opacity: .85;
+}
+
 /* ===== Featured project ===== */
 .featured-project {
   border-radius: 1.25rem;
