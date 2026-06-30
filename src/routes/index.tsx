@@ -11,6 +11,7 @@ import {
   Heart, Dumbbell,
 } from "lucide-react";
 import profileImg from "@/assets/profile.jpg";
+import resumePdf from "@/assets/archee-sinha-resume.pdf";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -56,24 +57,14 @@ const STATS = [
   { icon: Target, value: "2+", label: "Years Exploring" },
 ];
 
-const TECHS = ["Py", "SQL", "PT", "TF", "Git", "Tab", "PBI"];
-
-const TECH_LOGOS: { name: string; slug: string }[] = [
-  { name: "Python", slug: "python" },
-  { name: "SQL", slug: "mysql" },
-  { name: "Flask", slug: "flask" },
-  { name: "Git", slug: "git" },
-  { name: "GitHub", slug: "github" },
-  { name: "HTML5", slug: "html5" },
-  { name: "CSS3", slug: "css3" },
-  { name: "Tableau", slug: "tableau" },
-  { name: "Power BI", slug: "powerbi" },
-  { name: "OpenCV", slug: "opencv" },
-  { name: "MediaPipe", slug: "mediapipe" },
-  { name: "PyTorch", slug: "pytorch" },
-  { name: "TensorFlow", slug: "tensorflow" },
-  { name: "LangChain", slug: "langchain" },
-  { name: "Hugging Face", slug: "huggingface" },
+const TECH_LOGOS: { name: string; slug: string; color: string }[] = [
+  { name: "Python", slug: "python", color: "3776AB" },
+  { name: "SQL", slug: "mysql", color: "4479A1" },
+  { name: "PyTorch", slug: "pytorch", color: "EE4C2C" },
+  { name: "TensorFlow", slug: "tensorflow", color: "FF6F00" },
+  { name: "Git", slug: "git", color: "F05032" },
+  { name: "Tableau", slug: "tableau", color: "E97627" },
+  { name: "Power BI", slug: "powerbi", color: "F2C811" },
 ];
 
 const HERO_HIGHLIGHTS = [
@@ -108,28 +99,26 @@ const EXPERIENCE = [
 ];
 
 const FEATURED = {
-  title: "CrisisIQ",
-  subtitle: "AI-Powered Disaster Management Platform",
-  desc: "Real-time disaster detection, report classification and smart resource allocation using AI.",
+  title: "Intelligent AI Attendance System",
+  subtitle: "Facial Recognition & Voice Authentication",
+  desc: "Developed a multimodal attendance system using facial recognition and voice authentication for secure and accurate attendance tracking.",
   stats: [
-    { v: "97%", l: "Accuracy" },
-    { v: "1.2s", l: "Response Time" },
-    { v: "10K+", l: "Reports Analyzed" },
-    { v: "24/7", l: "Monitoring" },
+    { v: "2FA", l: "Auth Modes" },
+    { v: "Live", l: "Tracking" },
+    { v: "Secure", l: "Verification" },
+    { v: "Smart", l: "Logging" },
   ],
   live: "https://example.com",
-  github: "https://github.com/archeesinha05",
+  github: "https://github.com/ArcheeSinha",
 };
 
 const PROJECTS = [
-  { icon: Dumbbell, title: "Real-Time AI Gym Trainer", desc: "AI-powered fitness assistant with pose estimation, posture correction, rep counting and live feedback.", tags: ["Python", "OpenCV", "MediaPipe", "Pose Estimation", "Computer Vision"], label: "BUILT", github: "https://github.com/archeesinha05" },
-  { icon: Heart, title: "V.I.T.A.L.S.", desc: "Agentic AI healthcare platform streamlining patient triage via multi-agent collaboration and LLM-powered clinical decision support.", tags: ["Agentic AI", "RAG", "LLM", "Healthcare AI", "Multi-Agent"], label: "RESEARCH", github: "https://github.com/archeesinha05" },
-  { icon: Bot, title: "AI Attendance System", desc: "Face-recognition based attendance with real-time logging and admin dashboard.", tags: ["Python", "OpenCV", "Face Recognition"], label: "DEPLOYED", github: "https://github.com/archeesinha05" },
-  { icon: ImageIcon, title: "Neural Style Transfer", desc: "Deep-learning model applying artistic styles onto images using CNN feature representations.", tags: ["PyTorch", "CNN", "Deep Learning"], label: "RESEARCH", github: "https://github.com/archeesinha05" },
-  { icon: FileType, title: "AI Resume ATS System", desc: "NLP-driven resume parser & ATS scorer matching profiles against job descriptions.", tags: ["NLP", "Python", "Flask"], label: "PRODUCTION", github: "https://github.com/archeesinha05" },
-  { icon: Activity, title: "AI Credit Scoring", desc: "ML model predicting creditworthiness from financial behavior patterns.", tags: ["XGBoost", "Scikit-learn"], label: "HACKATHON", github: "https://github.com/archeesinha05" },
-  { icon: Code2, title: "Code Assistant", desc: "IDE-integrated code-completion assistant with semantic context retrieval.", tags: ["LLM", "Embeddings"], label: "DEPLOYED", github: "https://github.com/archeesinha05" },
-  { icon: Sparkles, title: "GenAI Studio", desc: "Multimodal generation playground combining diffusion + LLM pipelines.", tags: ["Diffusion", "Multimodal"], label: "RESEARCH", live: "https://example.com", github: "https://github.com/archeesinha05" },
+  { icon: Dumbbell, title: "Real-Time AI Gym Trainer", desc: "AI-powered fitness assistant using pose estimation for exercise tracking and posture correction.", tags: ["Python", "OpenCV", "MediaPipe", "Pose Estimation"], label: "BUILT", github: "https://github.com/ArcheeSinha" },
+  { icon: Heart, title: "V.I.T.A.L.S.", desc: "Agentic AI healthcare system for intelligent patient triage and clinical decision support.", tags: ["Agentic AI", "RAG", "LLM", "Healthcare AI"], label: "RESEARCH", github: "https://github.com/ArcheeSinha" },
+  { icon: Bot, title: "AI Attendance System", desc: "Multimodal attendance platform using facial recognition and voice authentication.", tags: ["Python", "OpenCV", "Face Recognition"], label: "DEPLOYED", github: "https://github.com/ArcheeSinha" },
+  { icon: ImageIcon, title: "Neural Style Transfer", desc: "Deep learning-based image stylization system using Adaptive Instance Normalization.", tags: ["PyTorch", "CNN", "Deep Learning"], label: "RESEARCH", github: "https://github.com/ArcheeSinha" },
+  { icon: FileType, title: "AI Resume ATS System", desc: "NLP-based platform to evaluate resumes against job descriptions and ATS standards.", tags: ["NLP", "Python", "Flask"], label: "PRODUCTION", github: "https://github.com/ArcheeSinha" },
+  { icon: Activity, title: "AI Credit Scoring", desc: "Machine learning system for predicting creditworthiness using financial risk analysis.", tags: ["XGBoost", "Scikit-learn"], label: "HACKATHON", github: "https://github.com/ArcheeSinha" },
 ];
 
 const CERTIFICATES = [
@@ -158,13 +147,6 @@ const CERTIFICATES = [
     title: "Data Analytics",
     items: [
       "Tableau — Certificate of Completion",
-    ],
-  },
-  {
-    icon: MessageCircle,
-    title: "Languages",
-    items: [
-      "Fit in Deutsch 1 — Goethe-Institut",
     ],
   },
 ];
@@ -366,15 +348,15 @@ function Hero({ roleIdx }: { roleIdx: number }) {
             AI-focused Computer Science student with a strong foundation in <span className="text-primary font-semibold">Machine Learning</span>, Data Structures &amp; Algorithms, and Software Development. Skilled in Python and passionate about building intelligent, scalable solutions to real-world problems through AI and innovation.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 justify-center md:justify-start">
-            <a href="https://linkedin.com/in/archeesinha" target="_blank" rel="noreferrer"
+            <a href="https://www.linkedin.com/in/archee-sinha-904695297/" target="_blank" rel="noreferrer"
               className="btn-glow inline-flex items-center gap-2 px-5 py-3 rounded-full font-medium">
               <Linkedin size={18} /> LinkedIn
             </a>
-            <a href="https://github.com/archeesinha05" target="_blank" rel="noreferrer"
+            <a href="https://github.com/ArcheeSinha" target="_blank" rel="noreferrer"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-full font-medium glow-card hover:text-primary">
               <Github size={18} /> GitHub
             </a>
-            <a href="#" className="inline-flex items-center gap-2 px-5 py-3 rounded-full font-medium glow-card hover:text-primary">
+            <a href={resumePdf} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-5 py-3 rounded-full font-medium glow-card hover:text-primary">
               <FileText size={18} /> Resume
             </a>
           </div>
@@ -522,11 +504,15 @@ function Skills() {
 
         <div className="mt-10 hud-frame rounded-2xl p-6">
           <p className="text-xs tracking-widest text-primary mb-5 text-center">OFFICIAL TECH STACK</p>
-          <div className="grid grid-cols-5 sm:grid-cols-8 lg:grid-cols-[repeat(15,minmax(0,1fr))] gap-3">
+          <p className="tech-stack-note text-center text-sm mb-5">
+            I love turning ideas into intelligent solutions.<br />
+            <span>Always learning. Always building.</span>
+          </p>
+          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-3">
             {TECH_LOGOS.map((t) => (
               <div key={t.name} title={t.name} className="tech-logo group">
                 <img
-                  src={`https://cdn.simpleicons.org/${t.slug}/E91E8A`}
+                  src={`https://cdn.simpleicons.org/${t.slug}/${t.color}`}
                   alt={t.name}
                   loading="lazy"
                   width={28}
@@ -536,19 +522,6 @@ function Skills() {
                 <span className="tech-logo-label">{t.name}</span>
               </div>
             ))}
-          </div>
-        </div>
-
-        <div className="mt-8 hud-frame rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-6">
-          <div className="flex items-center gap-4 flex-1">
-            <div className="w-14 h-14 rounded-full flex items-center justify-center border border-primary/40" style={{ background: "oklch(0.62 0.28 340 / .15)" }}>
-              <Brain className="text-primary" size={26} />
-            </div>
-            <p className="text-sm">I love turning ideas into <span className="text-primary font-semibold">intelligent solutions</span>.<br /><span className="text-muted-foreground">Always learning. Always building.</span></p>
-          </div>
-          <div className="flex items-center gap-3 flex-wrap">
-            <p className="text-xs font-bold tracking-wider text-primary mr-2">TECHNOLOGIES I USE</p>
-            {TECHS.map((t) => (<div key={t} className="tech-chip text-primary">{t}</div>))}
           </div>
         </div>
       </div>
@@ -630,74 +603,15 @@ function ExperienceItem({ item, side }: { item: typeof EXPERIENCE[number]; side:
 }
 
 function Projects() {
-  const railRef = useRef<HTMLDivElement | null>(null);
-  const [atStart, setAtStart] = useState(true);
-  const [atEnd, setAtEnd] = useState(false);
-
-  const updateEdges = React.useCallback(() => {
-    const el = railRef.current; if (!el) return;
-    setAtStart(el.scrollLeft <= 4);
-    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 4);
-  }, []);
-
-  useEffect(() => {
-    const el = railRef.current; if (!el) return;
-    updateEdges();
-    el.addEventListener("scroll", updateEdges, { passive: true });
-    window.addEventListener("resize", updateEdges);
-    return () => {
-      el.removeEventListener("scroll", updateEdges);
-      window.removeEventListener("resize", updateEdges);
-    };
-  }, [updateEdges]);
-
-  // Auto-scrolling marquee with inertia; pauses on hover, focus, drag
-  useEffect(() => {
-    const el = railRef.current; if (!el) return;
-    if (typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let raf = 0;
-    let paused = false;
-    let lastUserScroll = 0;
-    const speed = 0.45; // px per frame ~ 27px/s, gentle
-    const onEnter = () => { paused = true; };
-    const onLeave = () => { paused = false; };
-    const onUser = () => { lastUserScroll = performance.now(); };
-    const tick = () => {
-      if (!paused && performance.now() - lastUserScroll > 1500) {
-        const max = el.scrollWidth - el.clientWidth;
-        if (max > 4) {
-          let next = el.scrollLeft + speed;
-          if (next >= max - 1) next = 0;
-          el.scrollLeft = next;
-        }
-      }
-      raf = requestAnimationFrame(tick);
-    };
-    el.addEventListener("mouseenter", onEnter);
-    el.addEventListener("mouseleave", onLeave);
-    el.addEventListener("focusin", onEnter);
-    el.addEventListener("focusout", onLeave);
-    el.addEventListener("wheel", onUser, { passive: true });
-    el.addEventListener("touchstart", onUser, { passive: true });
-    raf = requestAnimationFrame(tick);
-    return () => {
-      cancelAnimationFrame(raf);
-      el.removeEventListener("mouseenter", onEnter);
-      el.removeEventListener("mouseleave", onLeave);
-      el.removeEventListener("focusin", onEnter);
-      el.removeEventListener("focusout", onLeave);
-      el.removeEventListener("wheel", onUser);
-      el.removeEventListener("touchstart", onUser);
-    };
-  }, []);
+  const pauseTimer = useRef<number | null>(null);
+  const [marqueeOffset, setMarqueeOffset] = useState(0);
+  const [manualPause, setManualPause] = useState(false);
 
   const scroll = (dir: 1 | -1) => {
-    const el = railRef.current; if (!el) return;
-    const card = el.querySelector<HTMLElement>(".project-card");
-    const gap = 24;
-    const step = card ? card.offsetWidth + gap : el.clientWidth * 0.7;
-    el.scrollBy({ left: dir * step, behavior: "smooth" });
+    setMarqueeOffset((offset) => offset - dir * 354);
+    setManualPause(true);
+    if (pauseTimer.current) window.clearTimeout(pauseTimer.current);
+    pauseTimer.current = window.setTimeout(() => setManualPause(false), 1400);
   };
 
   return (
@@ -737,62 +651,73 @@ function Projects() {
             <div className="text-center">
               <Zap className="mx-auto text-primary mb-3" size={48} />
               <p className="text-sm text-muted-foreground">Live Dashboard Preview</p>
-              <p className="text-xs text-muted-foreground mt-1">Real-time global crisis monitoring</p>
+              <p className="text-xs text-muted-foreground mt-1">Secure multimodal attendance tracking</p>
             </div>
           </div>
         </div>
 
         <div className="relative">
-          <button onClick={() => scroll(-1)} disabled={atStart} aria-label="Scroll projects left"
-            className={`nav-arrow hidden sm:flex absolute -left-2 top-1/2 -translate-y-1/2 z-10 ${atStart ? "is-disabled" : ""}`}>
+          <button onClick={() => scroll(-1)} aria-label="Scroll projects left"
+            className="nav-arrow hidden sm:flex absolute -left-2 top-1/2 -translate-y-1/2 z-10">
             <ChevronLeft />
           </button>
-          <button onClick={() => scroll(1)} disabled={atEnd} aria-label="Scroll projects right"
-            className={`nav-arrow hidden sm:flex absolute -right-2 top-1/2 -translate-y-1/2 z-10 ${atEnd ? "is-disabled" : ""}`}>
+          <button onClick={() => scroll(1)} aria-label="Scroll projects right"
+            className="nav-arrow hidden sm:flex absolute -right-2 top-1/2 -translate-y-1/2 z-10">
             <ChevronRight />
           </button>
 
           <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-[5]" style={{ background: "linear-gradient(to right, var(--background), transparent)" }} />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-[5]" style={{ background: "linear-gradient(to left, var(--background), transparent)" }} />
 
-          <div ref={railRef} className="project-rail flex gap-6 overflow-x-auto py-10 px-12 sm:px-16">
-            {PROJECTS.map((p) => (
-              <article key={p.title} className="project-card glow-card rounded-3xl shrink-0 w-[300px] sm:w-[330px] h-[380px] p-6 flex flex-col relative overflow-hidden">
-                <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full opacity-20" style={{ background: "var(--gradient-primary)" }} />
-                <p className="text-[10px] tracking-widest text-primary mb-3 relative z-10">● {p.label}</p>
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 relative z-10" style={{ background: "var(--gradient-primary)" }}>
-                  <p.icon className="text-primary-foreground" size={26} />
-                </div>
-                <h3 className="text-lg font-semibold mb-2 relative z-10">{p.title}</h3>
-                <p className="text-xs text-muted-foreground mb-4 relative z-10 flex-1">{p.desc}</p>
-                <div className="flex flex-wrap gap-2 mb-4 relative z-10">
-                  {p.tags.map((t) => (
-                    <span key={t} className="text-[11px] px-2 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">{t}</span>
+          <div className="project-viewport py-10 px-12 sm:px-16">
+            <div
+              className="project-rail project-track"
+              style={{
+                ["--project-offset" as never]: `${marqueeOffset}px`,
+                animationPlayState: manualPause ? "paused" : "running",
+              } as React.CSSProperties}
+            >
+              {[0, 1].map((loop) => (
+                <div key={loop} className="project-group" aria-hidden={loop === 1}>
+                  {PROJECTS.map((p) => (
+                    <article key={`${loop}-${p.title}`} className="project-card glow-card rounded-3xl shrink-0 w-[300px] sm:w-[330px] h-[380px] p-6 flex flex-col relative overflow-hidden">
+                      <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full opacity-20" style={{ background: "var(--gradient-primary)" }} />
+                      <p className="text-[10px] tracking-widest text-primary mb-3 relative z-10">● {p.label}</p>
+                      <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 relative z-10" style={{ background: "var(--gradient-primary)" }}>
+                        <p.icon className="text-primary-foreground" size={26} />
+                      </div>
+                      <h3 className="text-lg font-semibold mb-2 relative z-10">{p.title}</h3>
+                      <p className="text-xs text-muted-foreground mb-4 relative z-10 flex-1">{p.desc}</p>
+                      <div className="flex flex-wrap gap-2 mb-4 relative z-10">
+                        {p.tags.map((t) => (
+                          <span key={t} className="text-[11px] px-2 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">{t}</span>
+                        ))}
+                      </div>
+                      <div className="flex items-center gap-3 relative z-10">
+                        {p.live && (
+                          <a href={p.live} target="_blank" rel="noreferrer" aria-label={`${p.title} live`}
+                             className="w-10 h-10 rounded-full flex items-center justify-center border border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground transition">
+                            <ExternalLink size={16} />
+                          </a>
+                        )}
+                        {p.github && (
+                          <a href={p.github} target="_blank" rel="noreferrer" aria-label={`${p.title} GitHub`}
+                             className="w-10 h-10 rounded-full flex items-center justify-center border border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground transition">
+                            <Github size={16} />
+                          </a>
+                        )}
+                      </div>
+                    </article>
                   ))}
                 </div>
-                <div className="flex items-center gap-3 relative z-10">
-                  {p.live && (
-                    <a href={p.live} target="_blank" rel="noreferrer" aria-label={`${p.title} live`}
-                       className="w-10 h-10 rounded-full flex items-center justify-center border border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground transition">
-                      <ExternalLink size={16} />
-                    </a>
-                  )}
-                  {p.github && (
-                    <a href={p.github} target="_blank" rel="noreferrer" aria-label={`${p.title} GitHub`}
-                       className="w-10 h-10 rounded-full flex items-center justify-center border border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground transition">
-                      <Github size={16} />
-                    </a>
-                  )}
-                </div>
-              </article>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 }
-
 function Certificates() {
   const ref = useReveal<HTMLDivElement>();
   return (
@@ -834,9 +759,9 @@ function Contact() {
 
         <div className="grid sm:grid-cols-3 gap-4 mb-8">
           {[
-            { Icon: Users, label: "Connect", sub: "Let's connect and build something great.", href: "https://linkedin.com/in/archeesinha" },
+            { Icon: Users, label: "Connect", sub: "Let's connect and build something great.", href: "https://www.linkedin.com/in/archee-sinha-904695297/" },
             { Icon: Mail, label: "Email Me", sub: "Drop me an email anytime!", href: "mailto:archeesinha05@gmail.com" },
-            { Icon: FileText, label: "Resume", sub: "View my resume and experience.", href: "#" },
+            { Icon: FileText, label: "Resume", sub: "View my resume and experience.", href: resumePdf },
           ].map(({ Icon, label, sub, href }) => (
             <a key={label} href={href} target="_blank" rel="noreferrer" className="hud-frame rounded-2xl p-6 flex items-center gap-4 hover:scale-[1.02] transition">
               <div className="w-14 h-14 rounded-full flex items-center justify-center border border-primary/50 text-primary" style={{ background: "oklch(0.62 0.28 340 / .12)" }}>
@@ -890,8 +815,8 @@ function Contact() {
           <p className="text-xs tracking-widest text-primary mb-4">CONNECT WITH ME</p>
           <div className="flex items-center justify-center gap-4">
             {[
-              { Icon: Linkedin, href: "https://linkedin.com/in/archeesinha" },
-              { Icon: Github, href: "https://github.com/archeesinha05" },
+              { Icon: Linkedin, href: "https://www.linkedin.com/in/archee-sinha-904695297/" },
+              { Icon: Github, href: "https://github.com/ArcheeSinha" },
               { Icon: Mail, href: "mailto:archeesinha05@gmail.com" },
               { Icon: Phone, href: "tel:+919958096644" },
             ].map(({ Icon, href }, i) => (
